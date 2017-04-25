@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## 0.3.0 - 2017-04-25
+
+### Added
+
+  - NPM package configuration for this project.
+  - Public files for this project.
+  - Application bootstrap, style, functionality and test.
+  - Service functionality and test.
+
 ## 0.2.0 - 2017-04-21
 
 ### Added
