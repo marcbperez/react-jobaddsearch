@@ -4,18 +4,16 @@ body {
   font-family: sans-serif;
 }
 
-/* Application header. */
 .app-header {
-  padding-left: 20px;
-  padding-right: 20px;
+  background-color: #222;
+  padding: 20px;
+  color: white;
 }
 
-/* Application content. */
 .app-content {
   padding: 10px 20px;
 }
 
-/* Entries wrapper. */
 .entries {
   width: 100%;
   text-align: left;
