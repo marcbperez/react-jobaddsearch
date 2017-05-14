@@ -8,7 +8,7 @@ import './App.css';
 class App extends Component {
   /**
    * Initialize the application.
-   * @param {object} props - The application props.
+   * @param {Object} props - The application props.
    */
   constructor(props) {
     super(props);
@@ -27,12 +27,12 @@ class App extends Component {
     this.searchChange = this.searchChange.bind(this);
     this.searchSubmit = this.searchSubmit.bind(this);
 
-    this.props.service.getJobEntries(this.updateEntries, this.state.page);
+    this.props.service.getEntries(this.updateEntries, this.state.page);
   }
 
   /**
-   * Update log entries.
-   * @param {object} data - The entries to update.
+   * Update entries.
+   * @param {Object} data - The data to update from.
    */
   updateEntries(data) {
     const items = data.items.slice();
@@ -49,21 +49,24 @@ class App extends Component {
 
   /**
    * Go to previous page.
-   * @param {event} e - The default event.
+   * @param {Event} e - The default event.
    */
   previousPage(e) {
     e.preventDefault();
     const newPage = (this.state.page <= 1) ? 1 : this.state.page - 1;
 
     this.setState({page: newPage}, function () {
-      this.props.service.getJobEntries(this.updateEntries, this.state.page,
-        this.state.query)
+      this.props.service.getEntries(
+        this.updateEntries,
+        this.state.page,
+        this.state.query
+      )
     });
   }
 
   /**
    * Go to next page.
-   * @param {event} e - The default event.
+   * @param {Event} e - The default event.
    */
   nextPage(e) {
     e.preventDefault();
@@ -71,14 +74,17 @@ class App extends Component {
       this.state.totalPages : this.state.page + 1;
 
     this.setState({page: newPage}, function () {
-      this.props.service.getJobEntries(this.updateEntries, this.state.page,
-        this.state.query)
+      this.props.service.getEntries(
+        this.updateEntries,
+        this.state.page,
+        this.state.query
+      )
     });
   }
 
   /**
    * Updates state values from search form.
-   * @param {event} e - The default event.
+   * @param {Event} e - The default event.
    */
   searchChange(e) {
     const target = e.target;
@@ -92,11 +98,11 @@ class App extends Component {
 
   /**
    * Submits the search form and updates the entries.
-   * @param {event} e - The default event.
+   * @param {Event} e - The default event.
    */
   searchSubmit(e) {
     e.preventDefault();
-    this.props.service.getJobEntries(this.updateEntries, 1, this.state.query);
+    this.props.service.getEntries(this.updateEntries, 1, this.state.query);
 
     this.setState({
       page: 1
@@ -110,9 +116,7 @@ class App extends Component {
     return (
       <div>
         <div className="app-header">
-          <h2>
-            Job add search
-          </h2>
+          <h2>React Job Add Search</h2>
           <form onSubmit={this.searchSubmit}>
             <input name="query" type="text" value={this.state.query}
               onChange={this.searchChange} />

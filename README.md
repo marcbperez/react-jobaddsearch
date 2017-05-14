@@ -1,6 +1,6 @@
 # react-jobaddsearch
 
-Log viewer for the web in React.
+Job add search for the web in React.
 
 ## Installation
 
@@ -15,8 +15,9 @@ sudo ./gradlew
 
 ## Usage
 
-Run the following script to start a development server. After this the
-application will be available at `http://127.0.0.1:3000`.
+Change the `token` inside `src/index.js` and run the following script to start a
+development server. After this the application will be available at
+`http://127.0.0.1:3000`.
 
 ```bash
 npm start

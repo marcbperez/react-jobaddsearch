@@ -1,14 +1,15 @@
 /**
- * Application service.
- * @extends Component
+ * Application service
  */
 class Service {
   /**
    * Initialize the service.
    * @param {string} baseUrl - The base url of the service.
+   * @param {string} token - The access token.
    */
-  constructor(baseUrl) {
+  constructor(baseUrl, token) {
     this.baseUrl = baseUrl;
+    this.token = token;
   }
 
   /**
@@ -43,11 +44,12 @@ class Service {
   }
 
   /**
-   * Get job entries.
+   * Get entries.
    * @param {function} callback - The callback to send data to.
-   * @param {App} component - The app to update during the callback.
+   * @param {number} page - The page number to query.
+   * @param {string} query - The string to search for.
    */
-  getJobEntries(callback, page, query) {
+  getEntries(callback, page, query) {
     let url = this.baseUrl + '/job?';
 
     /* Adds the page parameter (if set) to the url. */
@@ -55,14 +57,20 @@ class Service {
       url += this.urlParameter('page', page);
     }
 
-    /* Adds the seach parameter (if set) to the url. */
+    /* Adds the search parameter (if set) to the url. */
     if (query) {
       const search = this.searchObject(query);
       url += this.urlParameter('search', JSON.stringify(search));
     }
 
+    /* Set the token header. */
+    var authentication = new Headers({
+      'Authorization': 'Bearer ' + this.token,
+    });
+
     /* Prepare fetch parameters. */
-    const init = {
+    var init = {
+      headers: authentication,
       method: 'GET',
       cache: 'default',
     };
